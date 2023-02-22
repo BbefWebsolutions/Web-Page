@@ -6474,7 +6474,7 @@ ul.latest_news li a:focus+span.defaultcolor {
     }
     .font-normal {
         font-weight: normal;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 @media (max-width: 1600px) and (min-width: 1400px){
