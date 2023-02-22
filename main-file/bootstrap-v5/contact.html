@@ -332,18 +332,18 @@
         <div class="row">
             <div class="col-lg-6 offset-lg-3">
                 <div class="page-titles whitecolor text-center padding">
-                    <h2 class="font-bold"> Contact Us</h2>
-                    <h3 class="font-light py-3">We'd Love To Here From You.</h3>
+                    <h2 class="font-bold"> Contacta con nosotros</h2>
+                    <h3 class="font-light py-3">Nos encantaria saber de tí.</h3>
                 </div>
             </div>
         </div>
         <div class="gradient-bg title-wrap mt-n5">
             <div class="row">
                 <div class="col-lg-12 col-md-12 whitecolor">
-                    <h3 class="float-start">Contact Us</h3>
+                    <h3 class="float-start">Contactanos</h3>
                     <ul class="breadcrumb top10 bottom10 float-end">
-                        <li class="breadcrumb-item hover-light"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item hover-light">Contact Us</li>
+                        <li class="breadcrumb-item hover-light"><a href="index.html">Inicio</a></li>
+                        <li class="breadcrumb-item hover-light">Contactanos</li>
                     </ul>
                 </div>
             </div>
@@ -357,18 +357,18 @@
         <div class="widget py-5">
             <div class="row">
                 <div class="col-md-12 text-center wow fadeIn mt-n3" data-wow-delay="300ms">
-                    <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Contact</span> Us
+                    <h2 class="heading bottom30 darkcolor font-light2 pt-1"><span class="font-normal">Contacta</span> con nosotros
                         <span class="divider-center"></span>
                     </h2>
                     <div class="col-md-8 offset-md-2 bottom35">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A dolores explicabo laudantium, omnis provident quam reiciendis voluptatum?</p>
+                        <p>En esta sección, encontrarás toda la información necesaria para contactarnos, ya sea para hacernos preguntas sobre nuestros productos y servicios, para solicitar asistencia técnica, para enviarnos sugerencias o comentarios, o simplemente para decir hola.</p>
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-6 order-sm-2">
                     <div class="contact-meta px-2 text-center text-md-start">
                         <div class="heading-title">
-                            <span class="defaultcolor mb-3">Trax Agency Worldwide</span>
-                            <h2 class="darkcolor font-normal mb-4"><span class="d-none d-md-inline-block">Our</span> Agency Office <span class="d-none d-md-inline-block">In London</span></h2>
+                            <span class="defaultcolor mb-3">BBEF Web Solutions</span>
+                            <h3 class="darkcolor font-normal mb-4"><span class="d-none d-md-inline-block">Comprometidos</span> Con nuestros <span class="d-none d-md-inline-block">Clientes</span></h3>
                         </div>
                         <p class="bottom10">Address: 309, New Cavendish St, EC1Y 3WK</p>
                         <p class="bottom10">0800 214 5252</p>
@@ -387,28 +387,30 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="heading-title  wow fadeInUp" data-wow-delay="300ms">
                         <form class="getin_form wow fadeInUp" data-wow-delay="400ms" onsubmit="return false;">
-                            <div class="row px-2">
+                            <div class="row px-2" id="app">
                                 <div class="col-md-12 col-sm-12" id="result1"></div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="name1" class="d-none"></label>
-                                        <input class="form-control" id="name1" type="text" placeholder="Name:" required  name="userName">
+                                        <input class="form-control" id="name1" type="text" placeholder="Nombre:" required v-model="from_name"  name="userName">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="email1" class="d-none"></label>
-                                        <input class="form-control" type="email" id="email1" placeholder="Email:" name="email">
+                                        <input class="form-control" type="email" id="email1" placeholder="Email:" name="email" v-model="from_email">
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
                                     <div class="form-group">
                                         <label for="message1" class="d-none"></label>
-                                        <textarea class="form-control" id="message1" placeholder="Message:" required  name="message"></textarea>
+                                        <textarea class="form-control" id="message1" placeholder="Message:" required  name="message" v-model="message"></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-sm-12">
-                                    <button type="submit" id="submit_btn1" class="button gradient-btn w-100">Send</button>
+                                    <button @click="enviar" class="button gradient-btn w-100">
+                                        Enviar
+                                    </button>
                                 </div>
                             </div>
                         </form>
@@ -614,5 +616,48 @@
 <script src="js/map.js"></script>
 <!--custom functions and script-->
 <script src="js/functions.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js"></script>
+<script src="https://cdn.emailjs.com/dist/email.min.js" type="text/javascript"></script>
 </body>
 </html>
+<script>
+    (function(){
+                emailjs.init("tTW02Ba_2nnTnuVRi");
+             })();
+            const vue = new Vue({
+                el: '#app',
+                data(){
+                    return {
+                        from_name: '',
+                        from_email: '',
+                        message: '',
+                        subject: 'Contacto',
+                    }
+                },
+                methods: {
+                    enviar(){
+                        let data = {
+                            from_name: this.from_name,
+                            from_email: this.from_email,
+                            message: this.message,
+                            subject: this.subject,
+                        };
+                        
+                        emailjs.send("service_315bkrl","template_8mioi7h", data)
+                        .then(function(response) {
+                            if(response.text === 'OK'){
+                                $("#name1").val("")
+                                $("#email1").val("")
+                                $("#message1").val("")
+                                alert('El correo se ha enviado de forma exitosa');
+                            }
+                           console.log("SUCCESS. status=%d, text=%s", response.status, response.text);
+                        }, function(err) {
+                            alert('Ocurrió un problema al enviar el correo');
+                           console.log("FAILED. error=", err);
+                        });
+                    }
+                }
+            });
+</script>
