@@ -3070,8 +3070,24 @@ a.dropdown-toggle::after {
 }
 
 .contact-header {
-    background: url(../images/bg-contact-header.jpg) no-repeat;
+    background: url(../img/hands-shake.jpg) no-repeat;
 }
+
+.contact-header::before {
+    content: "";
+    position: absolute; /* Establece la posición del pseudo-elemento */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Establece el color de fondo semi transparente */
+    /* z-index: 1; Asegura que la capa está sobre la imagen de fondo */
+  }
+  
+  .contact-header h1, h2, h3 {
+    position: relative; /* Establece la posición del título */
+    z-index: 2; /* Asegura que el título está sobre la capa semi transparente */
+  }
 
 .gallery-header {
     background: url(../images/bg-gallery-header.jpg) no-repeat;
@@ -6484,7 +6500,7 @@ ul.latest_news li a:focus+span.defaultcolor {
     }
     .font-normal {
         font-weight: normal;
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 @media (max-width: 1600px) and (min-width: 1400px){
