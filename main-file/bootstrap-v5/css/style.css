@@ -4591,7 +4591,7 @@ h4.darkcolor {
 
 #partners-slider .logo-item {
     width: 160px;
-    height: 40px;
+    height: 80px;
     overflow: hidden;
 }
 
@@ -4601,7 +4601,7 @@ h4.darkcolor {
 }
 
 .logo-item>img {
-    width: 98%;
+    width: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
